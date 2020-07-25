@@ -85,17 +85,17 @@ const ProdData = props => {
       data={state.data}
       // className={clsx(classes.root, className)}
       editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
+        // onRowAdd: (newData) =>
+        //   new Promise((resolve) => {
+        //     setTimeout(() => {
+        //       resolve();
+        //       setState((prevState) => {
+        //         const data = [...prevState.data];
+        //         data.push(newData);
+        //         return { ...prevState, data };
+        //       });
+        //     }, 600);
+        //   }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
             setTimeout(() => {

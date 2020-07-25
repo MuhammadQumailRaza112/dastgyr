@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import
   ProdData
  from './components';
-import UserModel from 'models/UserModel';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,13 +14,9 @@ const useStyles = makeStyles(theme => ({
 const ProductDash = () => {
   const classes = useStyles();
 
-    UserModel.getInstance().getProduct(null,(succ) => {
-      console.log(succ);
-    }, (err) => {
-    })
-
   return (
     <div className={classes.root}>
+        <div>HELLLLO</div>
       <Grid
         container
         spacing={4}
@@ -33,7 +28,7 @@ const ProductDash = () => {
           xl={9}
           xs={12}
         >
-          <ProdData />
+          {/* <ProdData /> */}
         </Grid>
       </Grid>
     </div>

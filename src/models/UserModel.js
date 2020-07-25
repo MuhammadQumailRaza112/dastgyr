@@ -60,6 +60,7 @@ export default class UserModel {
             }
         )
     }
+    
     getUserDetails(userId, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().getUserDetails(token, userId,
@@ -182,6 +183,65 @@ export default class UserModel {
         )
     }
 
+    //Product section
+    getProduct(params, successTrigger, failureTrigger) {
+    let token = UserModel.getInstance().getToken();
+    ApiManager.getInstance().getProduct(token, params,
+        function resSuccess(data) {
+            // UserModel.getInstance().productList = data.categories.data
+            successTrigger(data)
+        },
+        function resFailed(msg) {
+            failureTrigger(msg)
+            }
+        )
+    }
+
+    removeProduct(productId, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().removeproduct(token, productId,
+            function resSuccess(data) {
+                UserModel.getInstance().productList.forEach((product, index) => {
+                    if (product.id === productId) {
+                        UserModel.getInstance().productList.splice(index, 1);
+                        successTrigger(data)
+                    }
+                });
+            },
+            function resFailed(msg) {
+                failureTrigger(msg)
+            }
+        )
+    }
+    
+
+    addProduct(params, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().addproduct(token, params,
+            function resSuccess(data) {
+                successTrigger(data)
+            },
+            function resFailed(error) {
+                failureTrigger(error)
+            }
+        )
+    }
+
+    updateProduct(productId, params, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().updateProduct(token, productId, params,
+            function resSuccess(data) {
+                successTrigger(data)
+            },
+            function resFailed(error) {
+                failureTrigger(error)
+            }
+        )
+    }
+    
+
+  //End product section
+
     programAssociation(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().programAssociation(token, params,
@@ -287,9 +347,7 @@ export default class UserModel {
 
     }
 
-
     // start category
-
     getCategory(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().getCategory(token, params,

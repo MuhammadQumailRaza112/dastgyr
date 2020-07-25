@@ -192,7 +192,7 @@ export default class NetworkHandler {
 
   postNetworkRequest(url, token, serviceParams, successCallback, failureCallback) {
     let _headers = {
-        'Content-Type': 'Applicatopn/json'
+        'content-type': 'application/json'
     };
     if(token){
         _headers['Authorization'] = `Bearer ${token}`;

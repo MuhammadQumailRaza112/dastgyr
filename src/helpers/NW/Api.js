@@ -136,6 +136,65 @@ export default class Api {
     )
   }
 
+  //Product section
+  getProduct(token, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "product", token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  getProductDetail(token, product, successCallback, failureCallback) {
+    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "product/" + product, token, null,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  addProduct(token, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().postNetworkRequest(CONSTANT.baseURL + "product", token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+
+  updateProduct(token, product, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().updateNetworkRequest(CONSTANT.baseURL + "product/" + product, token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  removeProduct(token, id, successCallback, failureCallback) {
+    NetworkManger.getInstance().deleteNetworkRequest(CONSTANT.baseURL + "product/" + id, token, null,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqSuccess(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  //End product section
+
   getPayment(token, successCallback, failureCallback) {
     NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "payment_mode", token, null,
       function reqSuccess(data) {

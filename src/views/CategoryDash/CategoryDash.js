@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Grid } from '@material-ui/core';
 import
   CatData
  from './components';
+import UserModel from 'models/UserModel';
 
 const useStyles = makeStyles(theme => ({
   root: {
