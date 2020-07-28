@@ -50,12 +50,12 @@ const AddProduct = (props) => {
   const { className, ...rest } = props;
 
   const [params, setParams] = useState({
-    name: 'Shen',
+    name: '',
     // code: 'test prod code',
     // cat: 1,
     // subcat: 2,
-    brand:1,
-    image: "1"
+    brand:'',
+    image: ""
   });
 
   const handleChange = event => {
@@ -66,17 +66,23 @@ const AddProduct = (props) => {
   };
 
   const handleSubmit = () => {
-    var obj = {
-      name: params.name,
-      // code: "prodcode",
-      image: [params.image],
-      brand: [params.brand],
-      category: [selectedCat.id, selectedSubcat.id],
+    const errors = checkForBlanks();
+    if(errors){
+      alert('Fill all required fields')
     }
-    UserModel.getInstance().addProduct(obj, (succ) => {console.log(succ)}, (err) => {console.log(err)});
-    console.log(obj)
-
-    console.log("selectedCat is "+selectedCat.name)
+    else{
+      var obj = {
+        name: params.name,
+        // code: "prodcode",
+        image: params.image,
+        // brand: [1],
+        category: [selectedCat.id, selectedSubcat.id],
+      }
+      UserModel.getInstance().addProduct(obj, (succ) => {console.log(succ)}, (err) => {console.log(err)});
+      console.log(obj)
+  
+      console.log("selectedCat is "+selectedCat.name)
+    }
   }
 
   const catChangeHandle = (event) => {
@@ -111,6 +117,12 @@ const AddProduct = (props) => {
     if(arr){
       selectedSubcat = subcatData[arr];
       setSelectedSubcat(selectedSubcat)
+    }
+  }
+
+  const checkForBlanks = () => {
+    if(params.name === '' || params.image === '' || selectedCat==='' || selectedSubcat===''){
+      return true;
     }
   }
 
@@ -161,7 +173,6 @@ const AddProduct = (props) => {
                 margin="dense"
                 name="brand"
                 onChange={handleChange}
-                required
                 value={params.brand}
                 variant="outlined"
               />

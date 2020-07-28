@@ -215,7 +215,6 @@ export default class UserModel {
         )
     }
     
-
     addProduct(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().addProduct(token, params,
