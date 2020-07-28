@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import moment from 'moment';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+// import moment from 'moment';
+// import PerfectScrollbar from 'react-perfect-scrollbar';
+// import mockData from './data';
+// import { StatusBullet } from 'components';
+// import createPalette from '@material-ui/core/styles/createPalette';
+// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { useHistory } from "react-router-dom";
 import PropTypes, { func } from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Card,
-  CardActions,
-  CardHeader,
-  CardContent,
-  Button,
-  Divider,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Tooltip,
-  TableSortLabel,
   MuiThemeProvider,
   createMuiTheme
 } from '@material-ui/core';
 import MaterialTable from 'material-table';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-import mockData from './data';
-import { StatusBullet } from 'components';
-import createPalette from '@material-ui/core/styles/createPalette';
 import UserModel from 'models/UserModel';
 
 const useStyles = makeStyles(theme => ({
@@ -63,8 +50,8 @@ const ProdData = props => {
     {title: 'Prod Id', field: 'prodId', editable: 'never'},
     {title: 'Product Name', field: 'prodName'},
     {title: 'Brand', field: 'brand'},
-    {title: 'Category', field: 'cat'},
-    {title: 'Subcategory', field: 'subcat'}
+    {title: 'Category', field: 'cat', editable: 'never'},
+    {title: 'Subcategory', field: 'subcat', editable: 'never'}
   ]);
 
   useEffect(() => {
@@ -76,9 +63,9 @@ const ProdData = props => {
         tempArr.push({
           prodId: obj.id,
           prodName: obj.name,
-          brand: obj.brand,
-          cat: obj.categories[0].name,
-          subcat: obj.categories[0].name
+          brand: obj.brand_name,
+          // cat: obj.categories[0].name,
+          // subcat: obj.subcategories[0].name
         })
       });
       // console.log(prodData)
@@ -88,7 +75,6 @@ const ProdData = props => {
       console.log(err)
     })
   },[])
-
 
   const { className, ...rest } = props;
   let history = useHistory();
