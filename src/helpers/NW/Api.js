@@ -160,7 +160,7 @@ export default class Api {
   }
 
   addProduct(token, params, successCallback, failureCallback) {
-    NetworkManger.getInstance().postNetworkRequest(CONSTANT.baseURL + "product", token, params,
+    NetworkManger.getInstance().postNetworkRequest(CONSTANT.baseURL + "product/", token, params,
       function reqSuccess(data) {
         successCallback(data)
       },
@@ -192,8 +192,67 @@ export default class Api {
       }
     )
   }
-
   //End product section
+
+  
+  //Start of Sku section
+  getSku(token, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "sku", token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  getSkuDetail(token, sku, successCallback, failureCallback) {
+    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "sku/" + sku, token, null,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  addSku(token, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().postNetworkRequest(CONSTANT.baseURL + "sku/", token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+
+  updateSku(token, sku, params, successCallback, failureCallback) {
+    NetworkManger.getInstance().updateNetworkRequest(CONSTANT.baseURL + "sku/" + sku, token, params,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqFailed(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  removeSku(token, id, successCallback, failureCallback) {
+    NetworkManger.getInstance().deleteNetworkRequest(CONSTANT.baseURL + "sku/" + id, token, null,
+      function reqSuccess(data) {
+        successCallback(data)
+      },
+      function reqSuccess(error) {
+        failureCallback(error)
+      }
+    )
+  }
+
+  //End of Sku section
 
   getPayment(token, successCallback, failureCallback) {
     NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "payment_mode", token, null,
@@ -326,7 +385,7 @@ export default class Api {
 
 
   getSubCategory(token, category_id, successCallback, failureCallback) {
-    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "merchant_category/get_all_sub_categories/" + category_id, token, null,
+    NetworkManger.getInstance().getNetworkRequest(CONSTANT.baseURL + "category/sub/" + category_id, token, null,
       function reqSuccess(data) {
         successCallback(data)
       },

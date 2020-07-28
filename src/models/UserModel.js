@@ -199,7 +199,7 @@ export default class UserModel {
 
     removeProduct(productId, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
-        ApiManager.getInstance().removeproduct(token, productId,
+        ApiManager.getInstance().removeProduct(token, productId,
             function resSuccess(data) {
                 UserModel.getInstance().productList.forEach((product, index) => {
                     if (product.id === productId) {
@@ -217,7 +217,7 @@ export default class UserModel {
 
     addProduct(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
-        ApiManager.getInstance().addproduct(token, params,
+        ApiManager.getInstance().addProduct(token, params,
             function resSuccess(data) {
                 successTrigger(data)
             },
@@ -238,9 +238,65 @@ export default class UserModel {
             }
         )
     }
+  //End product section
+
+
+  //Start Sku section
+  getSku(params, successTrigger, failureTrigger) {
+    let token = UserModel.getInstance().getToken();
+    ApiManager.getInstance().getSku(token, params,
+        function resSuccess(data) {
+            // UserModel.getInstance().skuList = data.categories.data
+            successTrigger(data)
+        },
+        function resFailed(msg) {
+            failureTrigger(msg)
+            }
+        )
+    }
+
+    removeSku(skuId, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().removeSku(token, skuId,
+            function resSuccess(data) {
+                UserModel.getInstance().skuList.forEach((sku, index) => {
+                    if (sku.id === skuId) {
+                        UserModel.getInstance().skuList.splice(index, 1);
+                        successTrigger(data)
+                    }
+                });
+            },
+            function resFailed(msg) {
+                failureTrigger(msg)
+            }
+        )
+    }
     
 
-  //End product section
+    addSku(params, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().addSku(token, params,
+            function resSuccess(data) {
+                successTrigger(data)
+            },
+            function resFailed(error) {
+                failureTrigger(error)
+            }
+        )
+    }
+
+    updatesku(skuId, params, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        ApiManager.getInstance().updateSku(token, skuId, params,
+            function resSuccess(data) {
+                successTrigger(data)
+            },
+            function resFailed(error) {
+                failureTrigger(error)
+            }
+        )
+    }
+  //End sku section
 
     programAssociation(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
@@ -352,8 +408,7 @@ export default class UserModel {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().getCategory(token, params,
             function resSuccess(data) {
-                UserModel.getInstance().CategoryList = data.categories.data
-                successTrigger(data.categories)
+                successTrigger(data)
             },
             function resFailed(msg) {
                 failureTrigger(msg)
@@ -391,24 +446,6 @@ export default class UserModel {
         )
     }
 
-    removeSubCategory(categoryId, successTrigger, failureTrigger) {
-        let token = UserModel.getInstance().getToken();
-        let params = {};
-        params.id = categoryId;
-        ApiManager.getInstance().removeCategory(token, params,
-            function resSuccess(data) {
-                UserModel.getInstance().subCategoryList.forEach((category, index) => {
-                    if (category.id === categoryId) {
-                        UserModel.getInstance().subCategoryList.splice(index, 1);
-                        successTrigger(data)
-                    }
-                });
-            },
-            function resFailed(msg) {
-                failureTrigger(msg)
-            }
-        )
-    }
 
     addCategory(params, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
@@ -433,13 +470,31 @@ export default class UserModel {
             }
         )
     }
+    
+    removeSubCategory(categoryId, successTrigger, failureTrigger) {
+        let token = UserModel.getInstance().getToken();
+        let params = {};
+        params.id = categoryId;
+        ApiManager.getInstance().removeCategory(token, params,
+            function resSuccess(data) {
+                UserModel.getInstance().subCategoryList.forEach((category, index) => {
+                    if (category.id === categoryId) {
+                        UserModel.getInstance().subCategoryList.splice(index, 1);
+                        successTrigger(data)
+                    }
+                });
+            },
+            function resFailed(msg) {
+                failureTrigger(msg)
+            }
+        )
+    }
 
     getSubCategory(category_id, successTrigger, failureTrigger) {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().getSubCategory(token, category_id,
             function resSuccess(data) {
-                UserModel.getInstance().subCategoryList = data.merchant_categories
-                successTrigger(data.merchant_categories)
+                successTrigger(data)
             },
             function resFailed(msg) {
                 failureTrigger(msg)

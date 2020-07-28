@@ -15,10 +15,7 @@ const useStyles = makeStyles(theme => ({
 const ProductDash = () => {
   const classes = useStyles();
 
-    UserModel.getInstance().getProduct(null,(succ) => {
-      console.log(succ);
-    }, (err) => {
-    })
+    
 
   return (
     <div className={classes.root}>

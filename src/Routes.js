@@ -20,7 +20,8 @@ import {
   BrandDash,
   SubcatDash,
   CategoryDash,
-  CityDash
+  CityDash,
+  AddProduct,
 } from './views';
 
 const Routes = () => {
@@ -102,6 +103,12 @@ const Routes = () => {
           exact
           layout={MainLayout}
           path="/products"
+        />
+        <RouteWithLayout
+          component={AddProduct}
+          exact
+          layout={MainLayout}
+          path="/add-prod"
         />
         <RouteWithLayout
           component={BrandDash}

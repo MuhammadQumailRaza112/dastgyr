@@ -10,6 +10,7 @@ export { default as Typography } from './Typography';
 export { default as UserList } from './UserList';
 export {default as SkuDash} from './SkuDash';
 export {default as ProductDash} from './ProductDash';
+export {default as AddProduct} from './AddProduct';
 export {default as BrandDash} from './BrandDash';
 export {default as SubcatDash} from './SubcatDash';
 export {default as CategoryDash} from './CategoryDash';
