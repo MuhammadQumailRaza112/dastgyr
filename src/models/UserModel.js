@@ -201,12 +201,13 @@ export default class UserModel {
         let token = UserModel.getInstance().getToken();
         ApiManager.getInstance().removeProduct(token, productId,
             function resSuccess(data) {
-                UserModel.getInstance().productList.forEach((product, index) => {
-                    if (product.id === productId) {
-                        UserModel.getInstance().productList.splice(index, 1);
-                        successTrigger(data)
-                    }
-                });
+                successTrigger(data)
+                // UserModel.getInstance().productList.forEach((product, index) => {
+                //     if (product.id === productId) {
+                //         UserModel.getInstance().productList.splice(index, 1);
+                //         successTrigger(data)
+                //     }
+                // });
             },
             function resFailed(msg) {
                 failureTrigger(msg)

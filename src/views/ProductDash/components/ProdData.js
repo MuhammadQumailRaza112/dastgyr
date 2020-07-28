@@ -149,7 +149,12 @@ const ProdData = props => {
             setTimeout(() => {
               resolve();
               console.log(oldData);
-              // UserModel.getInstance().removeProduct()
+              UserModel.getInstance().removeProduct(oldData.prodId, 
+                (resData) => {
+                  console.log(resData)
+                  window.location.reload()
+                },
+                (err) => {console.log(err)})
               // setProdData((prevState) => {
               //   prodData.splice(prodData.indexOf(oldData), 1);
               //   return [...prevState, prodData];
