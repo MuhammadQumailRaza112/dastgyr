@@ -1,8 +1,9 @@
-import React from 'react';
-import { Switch, Redirect } from 'react-router-dom';
+import React,{useEffect,useState} from 'react';
+import { Switch, Redirect,Route } from 'react-router-dom';
 
 import { RouteWithLayout } from './components';
 import { Main as MainLayout, Minimal as MinimalLayout } from './layouts';
+import UserModel from './models/UserModel';
 
 import {
   Dashboard as DashboardView,
@@ -25,13 +26,42 @@ import {
 } from './views';
 
 const Routes = () => {
-  return (
+//  const [isAuth,setisAuth] = useState(false) 
+//   useEffect(() => {
+//     console.log('comp did mount');
+//     const isAuths = UserModel.getInstance().isAuth()
+//     console.log('is auth',isAuths)
+//     setisAuth(isAuths);  
+//     console.log('aftrer set ',isAuth)
+      
+//   },[isAuth])
+
+  return ( 
     <Switch>
-      <Redirect
-        exact
-        from="/"
-        to="/dashboard"
-      />
+     
+    {/* <Route
+     exact
+     path="/"
+     render={() =>{
+       return(
+         isAuth ? <Redirect
+         exact
+         from="/"
+         to='/dashboard'
+       /> :  <Redirect
+       exact
+       from="/"
+       to='/sign-in'
+     />
+       )
+     }}
+    /> */}
+     <Redirect
+         exact
+         from="/"
+         to='/dashboard'
+         />
+  
       <RouteWithLayout
         component={SignInView}
         exact
